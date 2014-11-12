@@ -1,0 +1,1 @@
+Prolog project of game STAC
