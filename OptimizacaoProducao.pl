@@ -15,8 +15,9 @@ manage(Products,Factories,CombFactories,HoursProducts,HoursFactory,CostProducts,
         append(ProductsTemp,ProductsPerFactory3,ProductsPerFactory),
         append(ProductsPerFactory,ProductsLabel),
         Cost #= Cost1+Cost2+Cost3,
-        labeling([ffc,bisect,minimize(Cost),time_out(10000,_F)],ProductsLabel),write(Cost),nl,
-        showPeriod(ProductsByType1,1),nl,showPeriod(ProductsByType2,2),nl,showPeriod(ProductsByType3,3),nl,nl,write(Armazem1),nl,write(Armazem2),nl,write(Armazem3),nl.
+        labeling([ffc,bisect,minimize(Cost),time_out(60000,_F)],ProductsLabel),write('Total Cost:   '),write(Cost),nl,
+        showPeriod(ProductsByType1,1),nl,showPeriod(ProductsByType2,2),nl,showPeriod(ProductsByType3,3),nl,nl,
+        write('Warehouse1:   '),write(Armazem1),nl,write('Warehouse2:   '),write(Armazem2),nl,write('Warehouse3:   '),write(Armazem3),nl.
 
 %showPeriod(+Products organized by some criteria,+Period to show)
 showPeriod(Products,Count):-
@@ -68,6 +69,8 @@ initProducts(Products,Factories,ProductsPerFactory,Armazem):-
         domain(Armazem,0,sup),
         length(ProductsPerFactory,NumFactories),
         createList(ProductsPerFactory,NumProducts).
+
+
 
 %fill(-List,+Num)
 fill([],_Num).
