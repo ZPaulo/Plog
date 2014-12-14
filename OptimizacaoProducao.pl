@@ -15,9 +15,16 @@ manage(Products,Factories,CombFactories,HoursProducts,HoursFactory,CostProducts,
         append(ProductsTemp,ProductsPerFactory3,ProductsPerFactory),
         append(ProductsPerFactory,ProductsLabel),
         Cost #= Cost1+Cost2+Cost3,
-        labeling([ffc,bisect,minimize(Cost),time_out(60000,_F)],ProductsLabel),write('Total Cost:   '),write(Cost),nl,
+       reset_timer,labeling([ffc,bisect,minimize(Cost),time_out(60000,_F)],ProductsLabel),print_time,nl,write('Total Cost:   '),write(Cost),nl,
         showPeriod(ProductsByType1,1),nl,showPeriod(ProductsByType2,2),nl,showPeriod(ProductsByType3,3),nl,nl,
         write('Warehouse1:   '),write(Armazem1),nl,write('Warehouse2:   '),write(Armazem2),nl,write('Warehouse3:   '),write(Armazem3),nl.
+
+
+reset_timer :- statistics(walltime,_).  
+print_time :-
+        statistics(walltime,[_,T]),
+        TS is ((T//10)*10)/1000,
+        nl, write('Time: '), write(TS), write('s'), nl, nl.
 
 %showPeriod(+Products organized by some criteria,+Period to show)
 showPeriod(Products,Count):-
